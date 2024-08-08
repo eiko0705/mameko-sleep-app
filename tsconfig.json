@@ -9,7 +9,9 @@
     }
   ],
   "compilerOptions": {
-    "module": "CommonJS",
+    "module": "ESNext",
+    "esModuleInterop": true, 
     "strict": true,
-  }
+    "moduleResolution": "Node",
+  },
 }
