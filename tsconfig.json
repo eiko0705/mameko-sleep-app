@@ -14,4 +14,7 @@
     "strict": true,
     "moduleResolution": "Node",
   },
+  "exclude": [
+    "."
+  ]
 }
