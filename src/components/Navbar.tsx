@@ -10,15 +10,25 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 
 const Navbar = () => {
-  const [open, setOpen] = useState<boolean>(false);
-  const anchorEl = useRef<HTMLButtonElement>(null);
+  const [menuOpen, setMenuOpen] = useState<boolean>(false);
+  const [accountMenuOpen, setAccountMenuOpen] = useState<boolean>(false);
+  const menuAnchorEl = useRef<HTMLButtonElement>(null);
+  const accountAnchorEl = useRef<HTMLButtonElement>(null);
 
-  const handleClick = () => {
-    setOpen(!open);
+  const handleMenuClick = () => {
+    setMenuOpen(!menuOpen);
   }
 
-  const handleClose = () => {
-    setOpen(false);
+  const handleMenuClose = () => {
+    setMenuOpen(false);
+  };
+
+  const handleAccountMenuClick = () => {
+    setAccountMenuOpen(!accountMenuOpen);
+  }
+
+  const handleAccountMenuClose = () => {
+    setAccountMenuOpen(false);
   };
 
   return (
@@ -26,32 +36,53 @@ const Navbar = () => {
       <AppBar position='fixed'>
         <Toolbar>
           <IconButton
+            ref={menuAnchorEl}
             size="large"
             edge="start"
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
+            onClick={handleMenuClick}
           >
             <MenuIcon />
           </IconButton>
+          <Menu
+            id='menu-appbar'
+            anchorEl={menuAnchorEl.current}
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+            keepMounted
+            open={menuOpen}
+            onClose={handleMenuClose}
+            elevation={5}
+          >
+            <MenuItem>Logs</MenuItem>
+            <MenuItem>Summary</MenuItem>
+          </Menu>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             mameko-sleep-app
           </Typography>
           <div>
             <IconButton
-              ref={anchorEl}
+              ref={accountAnchorEl}
               size="large"
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
               color="inherit"
-              onClick={handleClick}
+              onClick={handleAccountMenuClick}
             >
               <AccountCircle />
             </IconButton>
             <Menu
-              id='menu-appbar'
-              anchorEl={anchorEl.current}
+              id='accoutn-menu-appbar'
+              anchorEl={accountAnchorEl.current}
               anchorOrigin={{
                 vertical: 'top',
                 horizontal: 'right',
@@ -61,8 +92,8 @@ const Navbar = () => {
                 horizontal: 'right',
               }}
               keepMounted
-              open={open}
-              onClose={handleClose}
+              open={accountMenuOpen}
+              onClose={handleAccountMenuClose}
               elevation={5}
             >
               <MenuItem>Profile</MenuItem>
