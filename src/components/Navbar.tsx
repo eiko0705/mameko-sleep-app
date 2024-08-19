@@ -1,3 +1,4 @@
+import { useRef, useState } from "react";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -9,6 +10,17 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 
 const Navbar = () => {
+  const [open, setOpen] = useState<boolean>(false);
+  const anchorEl = useRef<HTMLButtonElement>(null);
+
+  const handleClick = () => {
+    setOpen(!open);
+  }
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position='fixed'>
@@ -27,14 +39,36 @@ const Navbar = () => {
           </Typography>
           <div>
             <IconButton
+              ref={anchorEl}
               size="large"
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
               color="inherit"
+              onClick={handleClick}
             >
               <AccountCircle />
             </IconButton>
+            <Menu
+              id='menu-appbar'
+              anchorEl={anchorEl.current}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              open={open}
+              onClose={handleClose}
+              elevation={5}
+            >
+              <MenuItem>Profile</MenuItem>
+              <MenuItem>Settings</MenuItem>
+              <MenuItem>Sign out</MenuItem>
+            </Menu>
           </div>
         </Toolbar>
       </AppBar>
