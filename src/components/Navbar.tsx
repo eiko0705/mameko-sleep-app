@@ -72,7 +72,7 @@ const Navbar = () => {
               ) : (
                 <>
                   <MenuItem>Log in</MenuItem>
-                  <MenuItem>Sign in</MenuItem>
+                  <MenuItem>Sign up</MenuItem>
                 </>
               )}
             </Menu>
