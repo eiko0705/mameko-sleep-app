@@ -1,4 +1,5 @@
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import Container from '@mui/material/Container';
 import Navbar from './components/Navbar';
 import SignUp from './pages/SignUp';
 
