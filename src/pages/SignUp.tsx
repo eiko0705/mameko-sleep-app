@@ -6,13 +6,14 @@ import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { Dayjs } from 'dayjs';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 
 const SignUp = () => {
-  const [value, setValue] = useState<Date | null>(null)
+  const [value, setValue] = useState<Dayjs | null>(null)
 
   return (
     <Container component='main' maxWidth='sm'>
@@ -31,12 +32,12 @@ const SignUp = () => {
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
-                  autoComplete='nickname'
-                  name='nickname'
+                  autoComplete='babyName'
+                  name='babyName'
                   required
                   fullWidth
-                  id='nickname'
-                  label='Nickname'
+                  id='babyName'
+                  label="Baby's name"
                   autoFocus
                 />
               </Grid>
@@ -62,11 +63,12 @@ const SignUp = () => {
                 />
               </Grid>
               <Grid item xs={12}>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DatePicker
+                    label='Birthday'
                     format='MM-DD-YYYY'
                     value={value}
-                    renderInput={props => <TextField {...props} label='Birthday'/>}
+                    onChange={(newValue) => setValue(newValue)}
                   />
                 </LocalizationProvider>
               </Grid>
