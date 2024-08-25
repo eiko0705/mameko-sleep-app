@@ -65,7 +65,7 @@ const SignUp = () => {
               <Grid item xs={12}>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DatePicker
-                    label='Birthday'
+                    slotProps={{textField: { required: true}}}
                     format='MM-DD-YYYY'
                     value={value}
                     onChange={(newValue) => setValue(newValue)}
